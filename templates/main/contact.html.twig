@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Contact{% endblock %}
+
+{% block javascripts %}
+	<script src="https://js.hcaptcha.com/1/api.js" async defer></script>
+{% endblock %}
+
+{% block body %}
+
+	{% for message in app.flashes('success') %}
+		<div class="alert alert-success" role="alert">{{ message }}</div>
+	{% endfor %}
+
+	<main>
+			<div class="contact-block">
+				<div class="contact">
+							{{ form_start(contact_form) }}
+					<h1>Contactez-nous</h1>      		
+					<div class="separation"></div>
+						<div class="body-form">
+							<div class="left">
+								<div class="group">{{ form_row(contact_form.name) }}								
+									<i class="fas fa-user"></i>
+								</div>
+								<div class="group">{{ form_row(contact_form.email) }}								
+									<i class="fas fa-envelope"></i>
+								</div>
+								<div class="group">{{ form_row(contact_form.phone) }}								
+									<i class="fas fa-mobile-alt"></i>
+								</div>
+							</div>
+
+							<div class="right">
+								<div class="group">{{ form_row(contact_form.message, { 'attr': {'placeholder': "Saisissez ici..."}}) }}								
+								</div>
+							</div>
+						</div>
+
+						<div class="h-captcha" align="center" data-sitekey="56635d34-b421-4c1b-9e4e-527468d00c0c"></div>
+
+						<div class="footer-form" align="center">
+							<button type="submit">Envoyer votre message</button>
+						</div>
+							{{ form_end(contact_form) }}
+					</div>
+		</div>			
+	</main>
+{% endblock %}
